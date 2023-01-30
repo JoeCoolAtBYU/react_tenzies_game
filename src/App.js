@@ -19,7 +19,7 @@ function App() {
     return diceArray;
   }
 
-  function holdDice(id){
+  function holdDice(id) {
     console.log(id);
   }
 
@@ -27,7 +27,7 @@ function App() {
     setDice(allNewDice)
   }
 
-  let diceElements = dice.map(die => <Die key={die.id} id={die.id} value={die.value} isHeld={die.isHeld} hold={holdDice}/>)
+  let diceElements = dice.map(die => <Die key={die.id} value={die.value} isHeld={die.isHeld} hold={() => holdDice(die.id)}/>)
 
   return (
     <div className="game">
