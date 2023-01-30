@@ -28,6 +28,8 @@ body {
     justify-content: space-around;
     align-items: center;
     gap: 20px;
+
+    padding: 20px;
 }
 
 .dice-container {
@@ -45,16 +47,16 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    cursor:pointer;
+    cursor: pointer;
     background-color: white;
 }
 
-.die-num{
+.die-num {
     font-size: 2rem;
 
 }
 
-.roll-dice{
+.roll-dice {
     height: 50px;
     width: 100px;
     border: none;
