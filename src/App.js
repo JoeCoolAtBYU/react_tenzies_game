@@ -5,14 +5,15 @@ import {nanoid} from "nanoid"
 import Confetti from 'react-confetti'
 
 
-// put real dots on dice
-// track the number of rolls
+// put real dots on dice  - DONE
+// track the number of rolls - DONE
 // track the time it took to win
 // Save your best time to local storage.
 
 function App() {
   const [dice, setDice] = useState(allNewDice)
   const [tenzie, setTenzie] = useState(false)
+  const [numRolls, setNumRolls] = useState(0);
 
 
   useEffect(() => {
@@ -35,6 +36,7 @@ function App() {
   function resetGame() {
     setDice(allNewDice)
     setTenzie(false)
+    setNumRolls(0)
   }
 
   function allNewDice() {
@@ -54,6 +56,7 @@ function App() {
   }
 
   function rollButtonClicked() {
+    setNumRolls(oldRolls => oldRolls + 1)
     setDice(oldDice => oldDice.map(die => {
       if (die.isHeld) {
         return die;
@@ -72,6 +75,9 @@ function App() {
       <div className="game">
         <h1 className="title">Tenzies</h1>
         <p className="instructions">Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>
+          <div className="numRolls">
+            {`You have rolled the dice ${numRolls} ${numRolls === 1 ? "time": "times"}`}
+          </div>
         <div className="dice-container">
           {diceElements}
         </div>
