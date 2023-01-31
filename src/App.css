@@ -68,6 +68,8 @@ body {
     border-radius: 10%;
 }
 
+/*got dice design from https://codesandbox.io/s/react-css-grid-dice-cly4v?from-embed=&file=/src/components/die.css:314-498*/
+
 .pip {
     display: block;
     align-self: center;
