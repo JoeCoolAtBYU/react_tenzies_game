@@ -14,16 +14,30 @@ function App() {
   const [dice, setDice] = useState(allNewDice)
   const [tenzie, setTenzie] = useState(false)
   const [numRolls, setNumRolls] = useState(0);
+  const [time, setTime] = useState(0);
+  const [running, setRunning] = useState(false);
 
 
   useEffect(() => {
     let isWon = dice.filter(dice => dice.isHeld === true)
     if (isWon.length === 10) {
       setTenzie(true)
+      setRunning(false)
       console.log("You Won!!!!")
     }
 
-  }, [dice])
+    let interval;
+    if (running) {
+      interval = setInterval(() => {
+        setTime((prevTime) => prevTime + 10);
+      }, 10);
+    }
+    else if (!running) {
+      clearInterval(interval);
+    }
+    return () => clearInterval(interval);
+
+  }, [dice, running])
 
   function genRandNum() {
     return Math.floor(Math.random() * 6) + 1;
@@ -34,6 +48,8 @@ function App() {
   }
 
   function resetGame() {
+    setTime(0)
+    setRunning(false)
     setDice(allNewDice)
     setTenzie(false)
     setNumRolls(0)
@@ -56,6 +72,10 @@ function App() {
   }
 
   function rollButtonClicked() {
+
+    if (!running) {
+      setRunning(true)
+    }
     setNumRolls(oldRolls => oldRolls + 1)
     setDice(oldDice => oldDice.map(die => {
       if (die.isHeld) {
@@ -73,15 +93,28 @@ function App() {
     <div className={"main"}>
       {tenzie ? <Confetti/> : <div/>}
       <div className="game">
-        <h1 className="title">Tenzies</h1>
-        <p className="instructions">Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>
+        <div className="stats">
           <div className="numRolls">
-            {`You have rolled the dice ${numRolls} ${numRolls === 1 ? "time": "times"}`}
+            {`You have rolled the dice ${numRolls} ${numRolls === 1 ? "time" : "times"}`}
           </div>
-        <div className="dice-container">
-          {diceElements}
+          <div className="timer">
+            <span>Your Time:</span>
+            <div className="numbers">
+              <span className="digits">{("0" + Math.floor((time / 60000) % 60)).slice(-2)}:</span>
+              <span className="digits">{("0" + Math.floor((time / 1000) % 60)).slice(-2)}:</span>
+              <span className="mili-sec">{("0" + ((time / 10) % 100)).slice(-2)}</span>
+            </div>
+          </div>
         </div>
-        <button className="roll-dice" onClick={tenzie ? resetGame : rollButtonClicked}>{tenzie ? "New Game" : "Roll"}</button>
+        <div className="gameboard">
+          <h1 className="title">Tenzies</h1>
+          <p className="instructions">Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>
+
+          <div className="dice-container">
+            {diceElements}
+          </div>
+          <button className="roll-dice" onClick={tenzie ? resetGame : rollButtonClicked}>{tenzie ? "New Game" : "Roll"}</button>
+        </div>
       </div>
     </div>
   );

@@ -9,7 +9,13 @@ body {
     font-family: 'Karla', sans-serif;
 }
 
-.game {
+.game{
+    display: flex;
+    flex-direction: row;
+
+}
+
+.gameboard {
     margin: 0;
     position: absolute;
     top: 50%;
@@ -30,6 +36,29 @@ body {
     gap: 20px;
 
     padding: 20px;
+}
+
+.stats {
+    margin: 0;
+    position: absolute;
+    top: 14.5rem;
+    left: 20rem;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 20rem;
+    height: 20rem;
+    max-width: 800px;
+    max-height: 800px;
+    gap: 20px;
+
+    padding: 20px;
+    background: #F5F5F5;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
 }
 
 .dice-container {
@@ -124,4 +153,23 @@ body {
 
 .roll-dice:active {
     box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
+}
+
+.timer{
+    margin : 1rem 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.digits{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1rem;
+    color:  #000;
+}
+
+.mili-sec{
+    font-size: 1rem;
+    color:  #e42a2a;
 }
