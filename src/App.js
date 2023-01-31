@@ -20,7 +20,9 @@ function App() {
 
   useEffect(() => {
     let isWon = dice.filter(dice => dice.isHeld === true)
-    if (isWon.length === 10) {
+    let firstNum = dice[0].value
+    let sameNumber = dice.every(die=> die.value === firstNum)
+    if (isWon.length === 10 && sameNumber) {
       setTenzie(true)
       setRunning(false)
       console.log("You Won!!!!")

@@ -9,7 +9,7 @@ body {
     font-family: 'Karla', sans-serif;
 }
 
-.game{
+.game {
     display: flex;
     flex-direction: row;
 
@@ -79,7 +79,7 @@ body {
 /*    cursor: pointer;*/
 /*}*/
 
-.die-face{
+.die-face {
     display: grid;
     grid-template-areas:
 		"a . c"
@@ -110,23 +110,27 @@ body {
     box-shadow: inset 0 3px #111, inset 0 -3px #555;
 }
 
-.pip:nth-child(2){
+.pip:nth-child(2) {
     grid-area: b;
 }
-.pip:nth-child(3){
+
+.pip:nth-child(3) {
     grid-area: c;
 }
-.pip:nth-child(4){
+
+.pip:nth-child(4) {
     grid-area: d;
 }
-.pip:nth-child(5){
+
+.pip:nth-child(5) {
     grid-area: e;
 }
-.pip:nth-child(6){
+
+.pip:nth-child(6) {
     grid-area: f;
 }
 
-.pip:nth-child(odd):last-child{
+.pip:nth-child(odd):last-child {
     grid-area: g;
 
 }
@@ -155,21 +159,21 @@ body {
     box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
 }
 
-.timer{
-    margin : 1rem 0;
+.timer {
+    margin: 1rem 0;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.digits{
+.digits {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 1rem;
-    color:  #000;
+    color: #000;
 }
 
-.mili-sec{
+.mili-sec {
     font-size: 1rem;
-    color:  #e42a2a;
+    color: #e42a2a;
 }
