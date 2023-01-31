@@ -74,6 +74,9 @@ function App() {
   }
 
   function holdDice(id) {
+    if (!running) {
+      setRunning(true)
+    }
     setDice(oldDice => oldDice.map(die => {
               return die.id === id ? {...die, isHeld: !die.isHeld} : die
             })
