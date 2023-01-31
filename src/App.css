@@ -12,7 +12,6 @@ body {
 .game {
     display: flex;
     flex-direction: row;
-
 }
 
 .gameboard {
@@ -41,12 +40,12 @@ body {
 .stats {
     margin: 0;
     position: absolute;
-    top: 14.5rem;
+    top: 50%;
     left: 20rem;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-    width: 20rem;
-    height: 20rem;
+    width: 18rem;
+    height: 16rem;
     max-width: 800px;
     max-height: 800px;
     gap: 20px;
@@ -160,11 +159,19 @@ body {
 }
 
 .timer {
-    margin: 1rem 0;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 1rem;
+}
+
+.bestTime {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
 }
 
 .digits {

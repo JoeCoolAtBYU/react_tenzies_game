@@ -7,7 +7,7 @@ import Confetti from 'react-confetti'
 
 // put real dots on dice  - DONE
 // track the number of rolls - DONE
-// track the time it took to win
+// track the time it took to win - DONE
 // Save your best time to local storage.
 
 function App() {
@@ -16,15 +16,22 @@ function App() {
   const [numRolls, setNumRolls] = useState(0);
   const [time, setTime] = useState(0);
   const [running, setRunning] = useState(false);
+  const [bestTime, setBestTime] = useState(localStorage.getItem('besTime') || 0)
 
 
   useEffect(() => {
     let isWon = dice.filter(dice => dice.isHeld === true)
     let firstNum = dice[0].value
-    let sameNumber = dice.every(die=> die.value === firstNum)
+    let sameNumber = dice.every(die => die.value === firstNum)
     if (isWon.length === 10 && sameNumber) {
       setTenzie(true)
       setRunning(false)
+
+      if (bestTime === 0 || time < bestTime) {
+        setBestTime(time)
+        localStorage.setItem('bestTime', time.toLocaleString())
+      }
+
       console.log("You Won!!!!")
     }
 
@@ -97,14 +104,22 @@ function App() {
       <div className="game">
         <div className="stats">
           <div className="numRolls">
-            {`You have rolled the dice ${numRolls} ${numRolls === 1 ? "time" : "times"}`}
+            <h4>{`You have rolled the dice ${numRolls} ${numRolls === 1 ? "time" : "times"}`}</h4>
           </div>
           <div className="timer">
-            <span>Your Time:</span>
+            <h4>Your Time:</h4>
             <div className="numbers">
               <span className="digits">{("0" + Math.floor((time / 60000) % 60)).slice(-2)}:</span>
               <span className="digits">{("0" + Math.floor((time / 1000) % 60)).slice(-2)}:</span>
               <span className="mili-sec">{("0" + ((time / 10) % 100)).slice(-2)}</span>
+            </div>
+          </div>
+          <div className="bestTime">
+            <h4>Your Best Time:</h4>
+            <div className="numbers">
+            <span className="digits">{("0" + Math.floor((bestTime / 60000) % 60)).slice(-2)}:</span>
+            <span className="digits">{("0" + Math.floor((bestTime / 1000) % 60)).slice(-2)}:</span>
+            <span className="mili-sec">{("0" + ((bestTime / 10) % 100)).slice(-2)}</span>
             </div>
           </div>
         </div>
